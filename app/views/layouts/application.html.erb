@@ -15,5 +15,11 @@
   </main>
 
   <%= yield :end_of_body %>
+
+  <% if current_user %>
+    <p>Signed in as <%= current_user.first_name %> | <%= link_to "Logout", [:logout], method: :destroy %></p>
+  <% else %>
+    <p><%= link_to 'Login', [:login], class: 'btn btn-info' %> | <%= link_to 'Signup', [:register] %></p>
+  <% end %>
 </body>
 </html>
