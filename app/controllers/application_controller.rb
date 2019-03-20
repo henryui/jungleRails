@@ -6,13 +6,19 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.where(email: session[:user_id])[0] if session[:user_id]
   end
   helper_method :current_user
 
   def authorize
     redirect_to '/login' unless current_user
   end
+  helper_method :authorize
+
+  def authorize_admin
+    redirect_to [:products] unless current_user && current_user.email == 'Jungle@book.com'
+  end
+  helper_method :authorize_admin
 
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
