@@ -1,7 +1,19 @@
 class OrdersController < ApplicationController
 
   def show
-    @order = Order.find(params[:id])
+    # @order = Order.find(params[:id])
+    order_item_list = LineItem.where('order_id = ?', params[:id])
+    product_list = []
+
+    (1..order_item_list.size).each do |i|
+      product_list << Product.find(order_item_list[i - 1].product_id)
+    end
+
+    render 'show', locals: {
+      order: Order.find(params[:id]),
+      items: order_item_list,
+      products: product_list
+    }
   end
 
   def create
@@ -39,7 +51,7 @@ class OrdersController < ApplicationController
     order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_subtotal_cents,
-      stripe_charge_id: stripe_charge.id, # returned by stripe
+      stripe_charge_id: stripe_charge.id # returned by stripe
     )
 
     enhanced_cart.each do |entry|
