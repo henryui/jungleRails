@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
+      Receipt.order_email(order).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
@@ -42,7 +43,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
-      description: "Khurram Virani's Jungle Order",
+      description: "Yunsung Oh's Jungle Order",
       currency:    'cad'
     )
   end
