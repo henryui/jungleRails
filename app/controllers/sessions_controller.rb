@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       if @user.authenticate(params['password'])
         # Save the user id inside the browser cookie. This is how we keep the user
         # logged in when they navigate around our website.
-        session[:user_id] = @user.email
+        session[:user_id] = @user.id
         redirect_to [:products]
       else
         # If user's login doesn't work, send them back to the login form.

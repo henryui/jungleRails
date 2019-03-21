@@ -1,7 +1,7 @@
 <section class="products-show">
 
   <header class="page-header">
-    <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
+    <h1><%= link_to product.category.name, product.category %> &raquo; <%= product.name %></h1>
   </header>
 
   <article class="product-detail">
@@ -9,20 +9,67 @@
     <div class="row">
 
       <div class="col-sm-4">
-        <%= image_tag @product.image.url, class: 'main-img' %>
+        <%= image_tag product.image.url, class: 'main-img' %>
       </div>
 
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <dt>Name</dt>
-          <dd><%= @product.name %></dd>
+          <dd><%= product.name %></dd>
           <dt>Description</dt>
-          <dd><%= @product.description %></dd>
+          <dd><%= product.description %></dd>
           <dt>Quantity</dt>
-          <dd><%= @product.quantity %></dd>
+          <dd><%= product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd><%= product.price %></dd>
+          <dt>Overall Rating</dt>
+          <dd>
+            <% (1..5).each do |k| %>
+              <% if k <= overall.round %>
+                <%= fa_icon('star', class: "star-checked") %>
+              <% else %>
+                <%= fa_icon('star') %>
+              <% end %>
+            <% end %>
+            (<%= overall.round(1) %>)
+          </dd>
         </dl>
+
+        <div class="panel panel-default reviews">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Reviews</th>
+                <th>Ratings</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "review", locals: { review: reviews, userinfo: userinfo } %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-1">
+            <h4>Leave a review!</h4>
+            <%= form_for [@product, @review] do |form| %>
+
+              <div class="form-group">
+                <%= form.label :description %>
+                <%= form.text_area :description, class: 'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.label :rating %>
+                <%= form.select :rating, (1..5), class: 'form-control' %>
+              </div>
+
+              <%= form.submit 'Submit', class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+
       </div>
     </div>
 
