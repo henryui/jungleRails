@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @reviews.each do |review|
       @overall += review.rating
     end
-    @overall /= @reviews.size
+    @overall /= @reviews.size unless @reviews.empty?
 
     @review = @product.review.new
 

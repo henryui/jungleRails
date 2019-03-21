@@ -31,7 +31,11 @@
                 <%= fa_icon('star') %>
               <% end %>
             <% end %>
-            (<%= overall.round(1) %>)
+            <% if overall == 0.0 %>
+              (<%= "none" %>)
+            <% else %>
+              (<%= overall.round(1) %>)
+            <% end %>
           </dd>
         </dl>
 
