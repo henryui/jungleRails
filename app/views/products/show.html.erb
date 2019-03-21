@@ -34,7 +34,7 @@
             <% if overall == 0.0 %>
               (<%= "none" %>)
             <% else %>
-              (<%= overall.round(1) %>)
+              <%= overall.round(1) %> (<%= reviews.size %> reviews)
             <% end %>
           </dd>
         </dl>

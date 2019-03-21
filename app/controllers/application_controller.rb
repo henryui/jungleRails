@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :authorize
 
   def authorize_admin
-    redirect_to [:products] unless current_user && current_user.email == 'Jungle@book.com'
+    redirect_to [:products] unless current_user && current_user.email == Dotenv.parse(".env")['ADMIN_EMAIL']
   end
   helper_method :authorize_admin
 

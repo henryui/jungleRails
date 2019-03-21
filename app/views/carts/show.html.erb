@@ -43,7 +43,7 @@
             data-name="Jungle"
             data-description="<%= current_user ? "#{current_user.first_name} #{current_user.last_name}" : "Guest" %>'s Jungle Order"
             data-locale="auto"
-            data-email="<%= current_user ? current_user.email : "tik2o1henry@hotmail.com" %>"
+            data-email="<%= current_user ? current_user.email : Dotenv.parse(".env")['TEST_EMAIL'] %>"
             data-currency="cad">
           </script>
         <% end %>
