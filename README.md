@@ -5,6 +5,18 @@ A mini e-commerce application built with Rails 4.2.
 
 ## Final Product
 
+!["The order page"](https://github.com/henryui/jungleRails/blob/master/docs/Jungle1.png?raw=true)
+*The order page*
+
+
+
+!["The cart page"](https://github.com/henryui/jungleRails/blob/master/docs/Jungle2.png?raw=true)
+*The cart page*
+
+
+
+!["Product/review show page"](https://github.com/henryui/jungleRails/blob/master/docs/Jungle3.png?raw=true)
+*Product/review show page
 
 
 ## Setup
