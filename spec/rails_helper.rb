@@ -1,11 +1,3 @@
-require "capybara/rails"
-require "capybara/rspec"
-require "capybara/poltergeist" # Add this line to require poltergeist
-
-# Specs flagged with `js: true` will use Capybara's JS driver. Set
-# that JS driver to :poltergeist
-Capybara.javascript_driver = :poltergeist
-
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -14,6 +6,14 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
+require "capybara/rails"
+require "capybara/rspec"
+require "capybara/poltergeist" # Add this line to require poltergeist
+
+# Specs flagged with `js: true` will use Capybara's JS driver. Set
+# that JS driver to :poltergeist
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
